@@ -3,6 +3,7 @@ package com.example.iplayer.dagger
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -19,5 +20,6 @@ open class NetworkModule {
         OkHttpClient.Builder()
             .connectTimeout(connectionTimeout, TimeUnit.SECONDS)
             .readTimeout(readTimeout, TimeUnit.SECONDS)
+            .addInterceptor(HttpLoggingInterceptor())
             .build()
 }

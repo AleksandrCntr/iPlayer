@@ -1,37 +1,39 @@
 package com.example.iplayer.network
 
+import com.squareup.moshi.Json
+
 data class ITunesResponse (
-    val resultCount : Long,
-    val results : List<ITunesEntity>
+    @field:Json(name = "resultCount") val resultCount : Long,
+    @field:Json(name = "results") val results : List<ITunesEntity>
 )
 
 data class ITunesEntity (
-    val wrapperType : String,
-    val kind : String,
-    val artistId : Int,
-    val collectionId : Int,
-    val trackId : Int,
-    val artistName : String,
-    val collectionName : String,
-    val trackName : String,
-    val collectionCensoredName : String,
-    val trackCensoredName : String,
-    val artistViewUrl : String,
-    val collectionViewUrl : String,
-    val trackViewUrl : String,
-    val previewUrl : String,
-    val artworkUrl60 : String,
-    val artworkUrl100 : String,
-    val collectionPrice : Float,
-    val trackPrice : Float,
-    val collectionExplicitness : String,
-    val trackExplicitness : String,
-    val discCount : Int,
-    val discNumber : Int,
-    val trackCount : Int,
-    val trackNumber : Int,
-    val trackTimeMillis : Int,
-    val country : String,
-    val currency : String,
-    val primaryGenreName : String
+    @field:Json(name = "wrapperType") val wrapperType : String,
+    @field:Json(name = "kind") val kind : String,
+    @field:Json(name = "artistId") val artistId : Int,
+    @field:Json(name = "collectionId") val collectionId : Int,
+    @field:Json(name = "trackId") val trackId : Int,
+    @field:Json(name = "artistName") val artistName : String,
+    @field:Json(name = "collectionName") val collectionName : String,
+    @field:Json(name = "trackName") val trackName : String,
+    @field:Json(name = "collectionCensoredName") val collectionCensoredName : String,
+    @field:Json(name = "trackCensoredName") val trackCensoredName : String,
+    @field:Json(name = "artistViewUrl") val artistViewUrl : String,
+    @field:Json(name = "collectionViewUrl") val collectionViewUrl : String,
+    @field:Json(name = "trackViewUrl") val trackViewUrl : String,
+    @field:Json(name = "previewUrl") val previewUrl : String,
+    @field:Json(name = "artworkUrl60") val artworkUrl60 : String,
+    @field:Json(name = "artworkUrl100") val artworkUrl100 : String,
+    @field:Json(name = "collectionPrice") val collectionPrice : Float,
+    @field:Json(name = "trackPrice") val trackPrice : Float,
+    @field:Json(name = "collectionExplicitness") val collectionExplicitness : String,
+    @field:Json(name = "trackExplicitness") val trackExplicitness : String,
+    @field:Json(name = "discCount") val discCount : Int,
+    @field:Json(name = "discNumber") val discNumber : Int,
+    @field:Json(name = "trackCount") val trackCount : Int,
+    @field:Json(name = "trackNumber") val trackNumber : Int,
+    @field:Json(name = "trackTimeMillis") val trackTimeMillis : Int,
+    @field:Json(name = "country") val country : String,
+    @field:Json(name = "currency") val currency : String,
+    @field:Json(name = "primaryGenreName") val primaryGenreName : String
 )
