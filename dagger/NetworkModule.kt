@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
-open class NetworkModule {
+class NetworkModule {
     companion object {
         private const val connectionTimeout: Long = 5
         private const val readTimeout: Long = 5

@@ -1,6 +1,7 @@
 package com.example.iplayer.network
 
 import com.squareup.moshi.Json
+import java.util.*
 
 data class ITunesResponse (
     @field:Json(name = "resultCount") val resultCount : Long,
@@ -26,6 +27,7 @@ data class ITunesEntity (
     @field:Json(name = "artworkUrl100") val artworkUrl100 : String,
     @field:Json(name = "collectionPrice") val collectionPrice : Float,
     @field:Json(name = "trackPrice") val trackPrice : Float,
+    @field:Json(name = "releaseDate") val releaseDate : Date,
     @field:Json(name = "collectionExplicitness") val collectionExplicitness : String,
     @field:Json(name = "trackExplicitness") val trackExplicitness : String,
     @field:Json(name = "discCount") val discCount : Int,
