@@ -1,9 +1,6 @@
 package com.example.iplayer
 
-import com.example.iplayer.dagger.NetworkModule
-import com.example.iplayer.dagger.ReposModule
-import com.example.iplayer.dagger.RetrofitModule
-import com.example.iplayer.dagger.UiModule
+import com.example.iplayer.dagger.*
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
@@ -14,10 +11,11 @@ import javax.inject.Singleton
     UiModule::class,
     NetworkModule::class,
     RetrofitModule::class,
-    ReposModule::class
+    ReposModule::class,
+    RoomModule::class,
+    AppModule::class
 ])
 interface AppComponent {
 
     fun inject(app: App)
-
 }

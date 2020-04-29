@@ -2,6 +2,7 @@ package com.example.iplayer.data
 
 import com.example.iplayer.network.ITunesEntity
 import java.util.*
+import com.example.iplayer.database.Album as RoomAlbum
 
 data class Song(
     val trackName: String,
@@ -34,6 +35,11 @@ data class Album(
             iTunesEntity.artistName, iTunesEntity.collectionName, iTunesEntity.collectionId,
             iTunesEntity.artworkUrl100, iTunesEntity.trackCount, iTunesEntity.country,
             iTunesEntity.releaseDate, iTunesEntity.primaryGenreName)
+    constructor(roomAlbum: RoomAlbum) : this(
+            roomAlbum.artistName, roomAlbum.collectionName, roomAlbum.collectionId,
+            roomAlbum.artworkUrl100, roomAlbum.trackCount, roomAlbum.country,
+            roomAlbum.releaseDate, roomAlbum.primaryGenreName
+    )
 }
 
 data class Artist(

@@ -3,18 +3,27 @@ package com.example.iplayer.ui.home
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.iplayer.data.Album
 import com.example.iplayer.data.DomainITunesEntity
 import com.example.iplayer.network.ITunesApi
 import com.example.iplayer.repositories.ITunesRepository
+import com.example.iplayer.repositories.RoomRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class HomeViewModel (
-    private val iTuneRepo: ITunesRepository
+    private val iTuneRepo: ITunesRepository,
+    private val roomRepository: RoomRepository
 ) : ViewModel() {
 
     val musicSearchResult = MutableLiveData<List<DomainITunesEntity>>()
     private val musicSearchType = MutableLiveData<ITunesApi.Entity>()
+
+    private var previousITunesSearchJob : Job? = null
+
+    val recentlyViewedAlbums = roomRepository.takeLatestThirtyDistinctAlbums()
+    val mostViewedAlbums = roomRepository.takeMostViewedAlbums()
 
     init {
         musicSearchType.value = ITunesApi.Entity.SONG
@@ -26,18 +35,28 @@ class HomeViewModel (
         musicSearchType.value = entity
     }
 
-    fun searchITunes(term: String) = viewModelScope.launch(context = Dispatchers.IO) {
-        //  todo can mutable livedata, preloaded, be null
-        val searchResult = when (getCurrentSearchTypeValue()!!) {
-            ITunesApi.Entity.SONG -> iTuneRepo.searchITunesSong(term)
-            ITunesApi.Entity.ALBUM -> iTuneRepo.searchITunesAlbum(term)
-            ITunesApi.Entity.ARTIST -> iTuneRepo.searchITunesArtist(term)
-        }
+    fun searchITunes(term: String) {
+        previousITunesSearchJob?.let { if (it.isActive) it.cancel() }
+        previousITunesSearchJob = viewModelScope.launch(context = Dispatchers.IO) {
+            //  todo can mutable livedata, preloaded, be null
+            val searchResult = when (getCurrentSearchTypeValue()!!) {
+                ITunesApi.Entity.SONG -> iTuneRepo.searchITunesSong(term)
+                ITunesApi.Entity.ALBUM -> iTuneRepo.searchITunesAlbum(term)
+                ITunesApi.Entity.ARTIST -> iTuneRepo.searchITunesArtist(term)
+            }
 
-        viewModelScope.launch {
-            searchResult?.let { musicSearchResult.value = it }
+            viewModelScope.launch {
+                searchResult?.let { musicSearchResult.value = it }
+            }
         }
     }
+
+    fun insertJustViewedAlbum(album: Album) = viewModelScope.launch(context = Dispatchers.IO) {
+        roomRepository.insertJustViewedAlbum(album)
+    }
+
+    fun getRecentlyViewedAlbumsValue() = recentlyViewedAlbums.value
+    fun getMostViewedAlbumsValue() = mostViewedAlbums.value
 }
 
 

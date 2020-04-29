@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.iplayer.R
 import com.example.iplayer.data.Album
+import com.example.iplayer.getReleaseDateYear
 import com.squareup.picasso.Picasso
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_album.view.*
-import java.util.*
 
 class AlbumListAdapter(
 //    private val context: Context,
@@ -54,10 +54,8 @@ class AlbumViewHolder(
             itemView.numberOfTracks.text = "$trackCount tracks"
 
             itemView.bandName.text = artistName
-//            itemView.releaseYear.text = releaseDate.year.toString()
-            val calendar = Calendar.getInstance()
-            calendar.time = releaseDate
-            itemView.releaseYear.text = calendar.get(Calendar.YEAR).toString()
+
+            itemView.releaseYear.text = album.getReleaseDateYear()
 
             itemView.setOnClickListener { itemClick(album) }
         }

@@ -2,7 +2,6 @@ package com.example.iplayer.dagger
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.iplayer.ui.home.HomeModule
 import dagger.Module
 import dagger.Provides
 import javax.inject.Provider

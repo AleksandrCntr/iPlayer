@@ -10,7 +10,8 @@ import com.example.iplayer.network.ITunesApi
 
 class HomeFragmentUiController (
     context: Context,
-    private val appbarBehaviour: HomeAppBarCoordinatorBehaviour
+    private val appbarBehaviour: HomeAppBarCoordinatorBehaviour,
+    private val afterHideSearchSetup : () -> Unit
 ) {
     //*****************
     // SEARCH RELATED *
@@ -20,7 +21,7 @@ class HomeFragmentUiController (
     private val appbar : View
     private val nestedScrollView : View
 
-    private val homeRecyclerView : View
+    private val homeContainer : View
     private val searchRecyclerView : View
     private val searchProgressBar : View
     private val startTyping : View
@@ -45,7 +46,7 @@ class HomeFragmentUiController (
         appbar = homeActivity.findViewById(R.id.appbar)
         nestedScrollView = homeActivity.findViewById(R.id.nesterScrollView)
 
-        homeRecyclerView = homeActivity.findViewById(R.id.homeRecycleView)
+        homeContainer = homeActivity.findViewById(R.id.homeContainer)
         searchRecyclerView = homeActivity.findViewById(R.id.searchRecycleView)
         searchProgressBar = homeActivity.findViewById(R.id.searchProgressBar)
         startTyping = homeActivity.findViewById(R.id.startTyping)
@@ -70,6 +71,7 @@ class HomeFragmentUiController (
     }
 
     fun showNothingFound() {
+        searchRecyclerView.visibility = View.GONE
         nothingFound.visibility = View.VISIBLE
     }
 
@@ -80,7 +82,7 @@ class HomeFragmentUiController (
         initShowSearchingSetupAnimation(appbarBehaviour.animateHideTitleToolbar())
 
         radioGroupSearch.visibility = View.VISIBLE
-        homeRecyclerView.visibility = View.GONE
+        homeContainer.visibility = View.GONE
         startTyping.visibility = View.VISIBLE
     }
     private fun initShowSearchingSetupAnimation(animator: Animator?) {
@@ -104,7 +106,9 @@ class HomeFragmentUiController (
         hideSearchingSetupAnimation()
 
         radioGroupSearch.visibility = View.GONE
-        homeRecyclerView.visibility = View.VISIBLE
+        homeContainer.visibility = View.VISIBLE
+
+        afterHideSearchSetup()
     }
     private fun hideSearchingSetupAnimation() {
         val duration = AppConstants.DEFAULT_ANIMATION_DURATION

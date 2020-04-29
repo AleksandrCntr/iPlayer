@@ -1,9 +1,11 @@
-package com.example.iplayer.ui.home
+package com.example.iplayer.dagger
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.iplayer.dagger.ViewModelKey
 import com.example.iplayer.repositories.ITunesRepository
+import com.example.iplayer.repositories.RoomRepository
+import com.example.iplayer.ui.home.HomeActivity
+import com.example.iplayer.ui.home.HomeViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
@@ -27,8 +29,14 @@ abstract class HomeModule {
         @Provides
         @IntoMap
         @ViewModelKey(HomeViewModel::class)
-        fun provideHomeViewModel(iTunesRepository: ITunesRepository) : ViewModel =
-            HomeViewModel(iTunesRepository)
+        fun provideHomeViewModel(
+            iTunesRepository: ITunesRepository,
+            roomRepository: RoomRepository
+        ) : ViewModel =
+            HomeViewModel(
+                iTunesRepository,
+                roomRepository
+            )
     }
 
     @Module
