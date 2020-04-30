@@ -1,6 +1,8 @@
 package com.example.iplayer.data
 
+import android.os.Parcelable
 import com.example.iplayer.network.ITunesEntity
+import kotlinx.android.parcel.Parcelize
 import java.util.*
 import com.example.iplayer.database.Album as RoomAlbum
 
@@ -21,6 +23,7 @@ data class Song(
             iTunesEntity.previewUrl, iTunesEntity.artworkUrl100)
 }
 
+@Parcelize
 data class Album(
     val artistName : String,
     val collectionName : String,
@@ -30,7 +33,7 @@ data class Album(
     val country : String,
     val releaseDate : Date,
     val primaryGenreName : String
-) : DomainITunesEntity {
+) : DomainITunesEntity, Parcelable {
     constructor(iTunesEntity: ITunesEntity) : this(
             iTunesEntity.artistName, iTunesEntity.collectionName, iTunesEntity.collectionId,
             iTunesEntity.artworkUrl100, iTunesEntity.trackCount, iTunesEntity.country,

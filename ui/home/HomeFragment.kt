@@ -1,6 +1,8 @@
 package com.example.iplayer.ui.home
 
 import android.annotation.SuppressLint
+import android.app.ActivityOptions
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +21,7 @@ import com.example.iplayer.data.Artist
 import com.example.iplayer.data.Song
 import com.example.iplayer.network.ITunesApi
 import com.example.iplayer.screenWidth
+import com.example.iplayer.ui.album.AlbumActivity
 import com.example.iplayer.ui.home.adapters.AlbumListAdapter
 import com.example.iplayer.ui.home.adapters.AlbumViewPagerAdapter
 import com.example.iplayer.ui.home.adapters.SimpleMockRecyclerAdapter
@@ -137,7 +140,16 @@ class HomeFragment : Fragment() {
             else {
                 when (resultList.first()) {
                     is Song -> { searchRecycleView.adapter = SongListAdapter(resultList as List<Song>) { } }
-                    is Album -> { searchRecycleView.adapter = AlbumListAdapter(resultList as List<Album>) { homeViewModel.insertJustViewedAlbum(it) } }
+                    is Album -> { searchRecycleView.adapter = AlbumListAdapter(resultList as List<Album>) {
+                            homeViewModel.insertJustViewedAlbum(it)
+                            val intent = Intent(activity, AlbumActivity::class.java)
+                            intent.putExtra("album", it)
+                            startActivity(
+                                intent, ActivityOptions
+                                    .makeScaleUpAnimation(view, 0, 0, 150, 150).toBundle()
+                            )
+                        }
+                    }
                     is Artist -> { searchRecycleView.adapter = SongListAdapter(resultList as List<Song>) { } }
                 }
                 uic.showSearchRecyclerView()

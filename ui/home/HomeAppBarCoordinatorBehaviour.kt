@@ -40,6 +40,9 @@ class HomeAppBarCoordinatorBehaviour : CoordinatorLayout.Behavior<AppBarLayout>(
 
     private var defineViewsFlag = false
 
+
+    private var searchingMode = false
+
     override fun onStartNestedScroll(coordinatorLayout: CoordinatorLayout, child: AppBarLayout, directTargetChild: View, target: View, axes: Int, type: Int): Boolean {
         getViews(child)
 
@@ -74,8 +77,8 @@ class HomeAppBarCoordinatorBehaviour : CoordinatorLayout.Behavior<AppBarLayout>(
         } else if (dyUnconsumed < 0) {
             //scrolling down, perform revealing, expanding
             //  increase a negative toolbarSearchPart margin to reveal top part
-
-            if (toolbarSearchPart.marginTop < 0) {
+            //  if searchingMode is on, we dont want to reveal top part
+            if (!searchingMode && toolbarSearchPart.marginTop < 0) {
                 var toolbarSearchPartMarginTop = toolbarSearchPart.marginTop - dyUnconsumed
                 if (toolbarSearchPartMarginTop > 0) toolbarSearchPartMarginTop = 0
 
@@ -151,6 +154,12 @@ class HomeAppBarCoordinatorBehaviour : CoordinatorLayout.Behavior<AppBarLayout>(
             }
         }
         return snapAnimator!!
+    }
+
+
+    //  In searching mode, i dont want title to reveal
+    fun switchMode() {
+        searchingMode = !searchingMode
     }
 
 

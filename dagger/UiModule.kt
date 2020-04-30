@@ -8,7 +8,8 @@ import javax.inject.Provider
 import javax.inject.Singleton
 
 @Module(includes = [
-    HomeModule::class
+    HomeModule::class,
+    AlbumModule::class
 ]
 )
 class UiModule {

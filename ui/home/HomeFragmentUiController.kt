@@ -80,6 +80,7 @@ class HomeFragmentUiController (
         searchingFlag = true
 
         initShowSearchingSetupAnimation(appbarBehaviour.animateHideTitleToolbar())
+        appbarBehaviour.switchMode()
 
         radioGroupSearch.visibility = View.VISIBLE
         homeContainer.visibility = View.GONE
@@ -104,6 +105,7 @@ class HomeFragmentUiController (
 
         hideEverySearchRelatedViewBut(-1) // view with id -1 doesn't exist so its hides every search related view
         hideSearchingSetupAnimation()
+        appbarBehaviour.switchMode()
 
         radioGroupSearch.visibility = View.GONE
         homeContainer.visibility = View.VISIBLE

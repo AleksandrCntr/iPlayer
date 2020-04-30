@@ -27,7 +27,7 @@ class HistoryViewPagerAdapter(
         with(view) {
             Picasso.get().load(item.artworkUrl100).into(artwork)
             albumName.text = item.collectionName
-            bandNameAndYear.text = "$item.artistName ${item.getReleaseDateYear()}"
+            bandName.text = "$item.artistName ${item.getReleaseDateYear()}"
         }
         container.addView(view)
         return view

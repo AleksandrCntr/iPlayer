@@ -19,7 +19,7 @@ class HomeActivity : AppCompatActivity(R.layout.activity_main) {
 
         AndroidInjection.inject(this)
 
-        homeFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as HomeFragment
+        homeFragment = supportFragmentManager.findFragmentById(R.id.homeFragment) as HomeFragment
     }
 
     override fun onBackPressed() {

@@ -31,6 +31,18 @@ class ITunesRepository @Inject constructor (
         return iResponse?.results?.map { Album(it) }
     }
 
+    suspend fun searchITunesAllTracksFromAlbum(collectionId: Int) : List<Song>? {
+        val iResponse = safeApiCall(
+            call = { iTunesApi.searchAllTracksFromAlbum(collectionId).await() },
+            errorMessage = "Error searching for SONGs list by collection id: \"$collectionId\""
+        )
+
+        //  the first element is a collection, it does not have trackName used in constructor
+        return iResponse?.results?.let {
+            it.subList(1, it.size).map { Song(it) }
+        }
+    }
+
     suspend fun searchITunesArtist(term: String) : List<Artist>? {
         val iResponse = safeApiCall(
             call = { iTunesApi.searchSongByTerm(term).await() },

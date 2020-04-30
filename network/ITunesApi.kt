@@ -10,6 +10,7 @@ interface ITunesApi {
 
     companion object {
         private const val SEARCH = "search"
+        private const val LOOKUP = "lookup"
     }
 
     @GET(value = SEARCH)
@@ -29,6 +30,13 @@ interface ITunesApi {
         @Query("term") term: String,
         @QueryMap attribute: Map<String, String>? = null,
         @Query("entity") entity: String = Entity.ALBUM.eName,
+        @Query("media") media: String = "music"
+    ) : Deferred<Response<ITunesResponse>>
+
+    @GET(value = LOOKUP)
+    fun searchAllTracksFromAlbum(
+        @Query("id") collectionId: Int,
+        @Query("entity") entity: String = Entity.SONG.eName,
         @Query("media") media: String = "music"
     ) : Deferred<Response<ITunesResponse>>
 

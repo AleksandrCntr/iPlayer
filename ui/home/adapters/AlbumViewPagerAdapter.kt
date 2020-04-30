@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
 import com.example.iplayer.R
 import com.example.iplayer.data.Album
-import com.example.iplayer.getReleaseDateYear
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_viewpager_album.view.*
 
@@ -26,7 +25,7 @@ class AlbumViewPagerAdapter(
         view.apply {
             Picasso.get().load(item.artworkUrl100).into(artwork)
             albumName.text = item.collectionName
-            bandNameAndYear.text = "${item.artistName}, ${item.getReleaseDateYear()}"
+            bandName.text = item.artistName
             setOnClickListener { itemClick(item) }
         }
         container.addView(view)
