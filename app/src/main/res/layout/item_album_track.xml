@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+
+    android:gravity="center_vertical"
+    
+    android:layout_marginBottom="8dp"
+    android:layout_marginTop="8dp">
+
+    <TextView
+        android:id="@+id/trackNumber"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+
+        android:gravity="center"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="15dp"
+        android:lines="1"
+
+        tools:text="11"
+        android:textSize="15sp"
+        android:textColor="@color/greyishGrey"/>
+
+    <TextView
+        android:id="@+id/trackName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:lines="1"
+
+        android:layout_weight="1"
+
+        tools:text="Living on a prayer"
+        android:textSize="15sp"
+        android:textColor="@color/plainWhite"/>
+
+    <TextView
+        android:id="@+id/trackLength"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginEnd="10dp"
+
+        tools:text="2:28"
+        android:textSize="15sp"
+        android:textColor="@color/greyishGrey"/>
+
+    <ImageButton
+        android:id="@+id/btnMore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:background="@null"
+        android:src="@drawable/ic_track_more_horiz_whtite_12dp"/>
+
+</LinearLayout>

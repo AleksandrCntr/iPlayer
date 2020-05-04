@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    app:cardBackgroundColor="@color/item_single_album_song_two_bg"
+
+    app:cardCornerRadius="6dp"
+    app:cardElevation="0dp"
+    app:cardMaxElevation="0dp"
+
+    android:layout_marginBottom="10dp">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp">
+
+        <ImageView
+            android:id="@+id/artwork"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+
+            android:layout_marginStart="10dp"
+
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/daft_punk"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+
+            android:gravity="center_vertical"
+
+            android:layout_marginStart="15dp">
+
+            <TextView
+                android:id="@+id/bandName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Daft Punk"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/songName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+
+                tools:text="Get Lucky"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

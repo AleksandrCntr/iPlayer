@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#41326A</color>
+    <color name="colorAccent">#FFFFFF</color>
+
+    <color name="lightGrey">#EBEBEB</color>
+    <color name="darkerGrey">#D0D0D0</color>
+    <color name="grey">#A5A9AD</color>
+    <color name="greyishGrey">#717171</color>
+
+    <color name="strawberryPink">#E21855</color>
+    <color name="navyBlue">#034673</color>
+    <color name="oceanBlue">#0353A4</color>
+    <color name="cloudsBlue">#0478C7</color>
+    <color name="softBlueTwo">#82A8D2</color>
+    <color name="softBlue">#83BBE3</color>
+    <color name="plainWhite">#FFFFFF</color>
+    <color name="pureBlack">#000000</color>
+
+    <color name="searchAccent">#9DA09E</color>
+    <color name="searchAccentBg">@color/plainWhite</color>
+
+    <color name="homeBackgroundColor">#2A324B</color>
+    <color name="homeBackgroundColorInverted">#3B413C</color>
+
+    <color name="appTitleColor">@color/plainWhite</color>
+    <color name="toolbarSettingsButtonColor">@color/plainWhite</color>
+    <color name="searchViewTextColor">@color/plainWhite</color>
+
+
+    <color name="item_album_bg">@color/lightGrey</color>
+    <color name="item_single_album_song_bg">@color/lightGrey</color>
+    <color name="item_single_album_song_two_bg">@color/lightGrey</color>
+
+</resources>

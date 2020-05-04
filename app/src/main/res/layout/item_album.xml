@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    app:cardBackgroundColor="@color/item_album_bg"
+
+    app:cardCornerRadius="6dp"
+    app:cardElevation="0dp"
+    app:cardMaxElevation="0dp"
+
+    android:layout_marginBottom="@dimen/item_margin">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:paddingStart="@dimen/item_margin"
+        android:paddingEnd="@dimen/item_margin"
+
+        android:paddingTop="@dimen/card_view_vertical_padding"
+        android:paddingBottom="@dimen/card_view_vertical_padding"
+        android:paddingLeft="@dimen/card_view_horizontal_padding"
+        android:paddingRight="@dimen/card_view_horizontal_padding">
+
+        <ImageView
+            android:id="@+id/artwork"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/gorillaz"
+
+            android:layout_marginEnd="@dimen/item_margin"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+
+            android:paddingTop="13dp"
+            android:paddingBottom="4dp">
+
+            <TextView
+                android:id="@+id/albumName"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+
+                tools:text="Feeling Good Inc."
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:layout_weight="1"
+
+                android:layout_marginBottom="@dimen/item_margin"/>
+
+            <TextView
+                android:id="@+id/numberOfTracks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                tools:text="21 tracks"
+                android:textSize="15sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/bandName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    tools:text="Gorillaz"
+                    android:textSize="15sp"
+
+                    android:layout_marginEnd="@dimen/item_margin"/>
+
+                <TextView
+                    android:id="@+id/releaseYear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    tools:text="2020"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

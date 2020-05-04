@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="horizontal_padding">10dp</dimen>
+    <dimen name="vertical_padding">10dp</dimen>
+    <dimen name="small_padding">4dp</dimen>
+
+    <dimen name="homeTitleSize">27sp</dimen>
+    <dimen name="radio_btn_horizontal_padding">4dp</dimen>
+    <dimen name="radio_btn_vertical_padding">10dp</dimen>
+    <dimen name="radio_btn_margin">10dp</dimen>
+    <dimen name="item_margin">10dp</dimen>
+
+    <dimen name="card_view_vertical_padding">0dp</dimen>
+    <dimen name="card_view_horizontal_padding">10dp</dimen>
+
+    <dimen name="view_pager_item_height">160dp</dimen>
+    <dimen name="view_pager_item_margin_between">8dp</dimen>
+    <dimen name="album_btn_margin_half">5dp</dimen>
+</resources>

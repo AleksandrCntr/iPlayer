@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">iPlayer</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_view_hint">Start searching...</string>
+    <string name="radio_btn_song">Song</string>
+    <string name="radio_btn_album">Album</string>
+    <string name="radio_btn_artist">Artist</string>
+
+    <string name="number_of_tracks">tracks</string>
+    <string name="home_recent">Recent</string>
+    <string name="home_most_viewed">Most Viewed</string>
+    <string name="home_all">View all</string>
+    <string name="home_suggestions">Suggestions</string>
+    <string name="type_to_search">Type to search</string>
+    <string name="album_btn_play">Play</string>
+    <string name="album_btn_add">Add</string>
+    <string name="album_shuffle_all">Shuffle All</string>
+</resources>
