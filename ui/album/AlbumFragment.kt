@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -33,6 +34,7 @@ class AlbumFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        //  Displaying information about album
         activity?.intent?.getParcelableExtra<Album>("album")?.let {
                 album ->
 
@@ -48,17 +50,20 @@ class AlbumFragment : Fragment() {
                         .into(appbarBg)
                 }
             }
+
             albumName.text = album.collectionName
             bandName.text = album.artistName
+            bandNameTop.text = album.artistName
             genreAndYear.text = "${album.primaryGenreName} • ${album.getReleaseDateYear()}"
         }
 
+        //  initializing adapters
         albumRecyclerView.layoutManager = LinearLayoutManager(activity)
-
         albumViewModel.allAlbumTracks.observe(viewLifecycleOwner, Observer {
                 songsList ->
             albumRecyclerView.adapter = SongListAdapter(songsList) {  }
         })
 
+        (appbar.layoutParams as CoordinatorLayout.LayoutParams).behavior = AlbumAppBarCoordinatorBehaviour()
     }
 }

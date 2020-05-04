@@ -142,12 +142,7 @@ class HomeFragment : Fragment() {
                     is Song -> { searchRecycleView.adapter = SongListAdapter(resultList as List<Song>) { } }
                     is Album -> { searchRecycleView.adapter = AlbumListAdapter(resultList as List<Album>) {
                             homeViewModel.insertJustViewedAlbum(it)
-                            val intent = Intent(activity, AlbumActivity::class.java)
-                            intent.putExtra("album", it)
-                            startActivity(
-                                intent, ActivityOptions
-                                    .makeScaleUpAnimation(view, 0, 0, 150, 150).toBundle()
-                            )
+                            startAlbumActivity(it)
                         }
                     }
                     is Artist -> { searchRecycleView.adapter = SongListAdapter(resultList as List<Song>) { } }
@@ -178,7 +173,20 @@ class HomeFragment : Fragment() {
         viewHistoryViewPager.adapter = AlbumViewPagerAdapter(
             albumList.map { Album(it) },
             viewPagerPageWidthF
-        ) {  }
+        ) {
+            homeViewModel.insertJustViewedAlbum(it)
+            startAlbumActivity(it)
+        }
+    }
+
+
+    private fun startAlbumActivity(album: Album) {
+        val intent = Intent(activity, AlbumActivity::class.java)
+        intent.putExtra("album", album)
+        startActivity(
+            intent, ActivityOptions
+                .makeScaleUpAnimation(view, 0, 0, 150, 150).toBundle()
+        )
     }
 
 

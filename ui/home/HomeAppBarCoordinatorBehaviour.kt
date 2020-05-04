@@ -44,8 +44,6 @@ class HomeAppBarCoordinatorBehaviour : CoordinatorLayout.Behavior<AppBarLayout>(
     private var searchingMode = false
 
     override fun onStartNestedScroll(coordinatorLayout: CoordinatorLayout, child: AppBarLayout, directTargetChild: View, target: View, axes: Int, type: Int): Boolean {
-        getViews(child)
-
         nestedScrollStarted = axes == ViewCompat.SCROLL_AXIS_VERTICAL ||
                 super.onStartNestedScroll(coordinatorLayout, child, directTargetChild, target, axes, type)
 
@@ -58,7 +56,6 @@ class HomeAppBarCoordinatorBehaviour : CoordinatorLayout.Behavior<AppBarLayout>(
 
     override fun onNestedScroll(coordinatorLayout: CoordinatorLayout, child: AppBarLayout, target: View, dxConsumed: Int, dyConsumed: Int, dxUnconsumed: Int, dyUnconsumed: Int, type: Int, consumed: IntArray) {
         super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, type, consumed)
-        getViews(child)
 
         if (dyConsumed > 0) {
             //scrolling up, perform hiding, shrinking
@@ -163,7 +160,12 @@ class HomeAppBarCoordinatorBehaviour : CoordinatorLayout.Behavior<AppBarLayout>(
     }
 
 
-    fun getViews(child: AppBarLayout) {
+    override fun onLayoutChild(parent: CoordinatorLayout, child: AppBarLayout, layoutDirection: Int): Boolean {
+        getViews(child)
+        return super.onLayoutChild(parent, child, layoutDirection)
+    }
+
+    private fun getViews(child: AppBarLayout) {
         if (defineViewsFlag) return
         defineViewsFlag = true
 
@@ -175,8 +177,8 @@ class HomeAppBarCoordinatorBehaviour : CoordinatorLayout.Behavior<AppBarLayout>(
 
         toolbarSearchPart = child.findViewById(R.id.toolbarSearchPart)
 
-        toolbarTopPartHeight = toolbarTopPart.height
-        toolbarSearchPartHeight = toolbarSearchPart.height
+        toolbarTopPartHeight = toolbarTopPart.measuredHeight
+        toolbarSearchPartHeight = toolbarSearchPart.measuredHeight
     }
 
 }
