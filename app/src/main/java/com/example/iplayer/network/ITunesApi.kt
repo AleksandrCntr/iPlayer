@@ -48,6 +48,7 @@ interface ITunesApi {
         @Query("media") media: String = "music"
     ) : Deferred<Response<ITunesResponse>>
 
+
     enum class Entity(val eName: String) {
         SONG("song"),
         ALBUM("album"),

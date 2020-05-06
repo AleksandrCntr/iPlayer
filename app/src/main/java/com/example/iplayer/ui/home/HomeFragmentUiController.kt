@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.content.Context
 import android.view.View
 import android.view.animation.DecelerateInterpolator
+import android.widget.EditText
 import android.widget.RadioGroup
 import com.example.iplayer.*
 import com.example.iplayer.network.ITunesApi
@@ -20,6 +21,10 @@ class HomeFragmentUiController (
 
     private val appbar : View
     private val nestedScrollView : View
+
+    private val searchEditText : EditText
+    private val btnTextCancel : View
+    private val btnSort : View
 
     private val homeContainer : View
     private val searchRecyclerView : View
@@ -45,6 +50,10 @@ class HomeFragmentUiController (
         // SEARCH RELATED
         appbar = homeActivity.findViewById(R.id.appbar)
         nestedScrollView = homeActivity.findViewById(R.id.nesterScrollView)
+
+        searchEditText = homeActivity.findViewById(R.id.searchEditText)
+        btnTextCancel = homeActivity.findViewById(R.id.btnCancel)
+        btnSort = homeActivity.findViewById(R.id.btnSort)
 
         homeContainer = homeActivity.findViewById(R.id.homeContainer)
         searchRecyclerView = homeActivity.findViewById(R.id.searchRecycleView)
@@ -85,6 +94,9 @@ class HomeFragmentUiController (
         radioGroupSearch.visibility = View.VISIBLE
         homeContainer.visibility = View.GONE
         startTyping.visibility = View.VISIBLE
+
+        btnSort.visibility = View.VISIBLE
+        btnTextCancel.visibility = View.VISIBLE
     }
     private fun initShowSearchingSetupAnimation(animator: Animator?) {
         val duration = animator?.duration ?: AppConstants.DEFAULT_ANIMATION_DURATION
@@ -94,11 +106,15 @@ class HomeFragmentUiController (
             appbar.setBackgroundColor(color)
             nestedScrollView.setBackgroundColor(color)
 
+            btnSort.alpha = it
         }
 
         animator?.start()
         colorAnimator.start()
     }
+//    private fun initShowSearchViewButtonsAnimation() {
+//        btnSort.al
+//    }
 
     fun hideSearchingSetup() {
         searchingFlag = false
@@ -107,8 +123,14 @@ class HomeFragmentUiController (
         hideSearchingSetupAnimation()
         appbarBehaviour.switchMode()
 
+        searchEditText.text?.clear()
+        searchEditText.clearFocus()
+
         radioGroupSearch.visibility = View.GONE
         homeContainer.visibility = View.VISIBLE
+
+        btnSort.visibility = View.GONE
+        btnTextCancel.visibility = View.GONE
 
         afterHideSearchSetup()
     }

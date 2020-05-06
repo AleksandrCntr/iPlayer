@@ -1,6 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
-</LinearLayout>
+    android:orientation="vertical"
+    android:layout_width="350dp"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+
+        android:alpha="0.2"
+
+        android:src="@drawable/timon"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:padding="@dimen/_10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="@string/about_greeting"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+
+            android:layout_weight="1"
+            android:layout_marginBottom="20dp"
+            android:gravity="bottom"
+
+            android:text="@string/about_message"
+            android:textColor="@color/greyishGrey"
+            android:textSize="19sp"
+            android:textStyle="bold"/>
+
+
+        <Button
+            android:id="@+id/btnGithub"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+
+            android:text="@string/github"
+            android:background="@drawable/button_view_bg"
+            android:textSize="17sp"
+            android:drawableStart="@drawable/link_button_small"
+            android:paddingStart="@dimen/_10dp"
+            android:paddingEnd="20dp"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+</FrameLayout>

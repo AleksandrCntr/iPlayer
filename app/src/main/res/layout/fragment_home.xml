@@ -32,7 +32,7 @@
                 android:paddingStart="@dimen/horizontal_padding"
                 android:paddingEnd="@dimen/horizontal_padding"
                 android:paddingTop="@dimen/vertical_padding"
-                android:paddingBottom="5dp"
+                android:paddingBottom="@dimen/_5dp"
 
                 android:gravity="center_vertical">
 
@@ -66,37 +66,84 @@
                 android:layout_height="wrap_content"
 
                 android:orientation="vertical"
-                android:paddingTop="10dp"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:paddingBottom="10dp"
+                android:paddingTop="@dimen/_10dp"
+                android:paddingStart="@dimen/_10dp"
+                android:paddingEnd="@dimen/_10dp"
+                android:paddingBottom="@dimen/_10dp"
 
                 android:layout_below="@id/toolbarTopPart"
                 >
 
-                <com.example.iplayer.ui.components.ClearFocusEditText
+                <LinearLayout
                     android:id="@+id/searchView"
-
-                    android:padding="@dimen/vertical_padding"
-
-                    android:focusedByDefault="false"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content">
 
-                    android:imeOptions="actionDone"
-                    android:singleLine="true"
-                    android:background="@drawable/search_view_bg"
-                    android:hint="@string/search_view_hint"
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
 
-                    android:textColor="@color/searchViewTextColor"
-                    android:textColorHint="@color/searchViewTextColor" />
+                        android:layout_weight="1">
+
+                        <com.example.iplayer.ui.components.ClearFocusEditText
+                            android:id="@+id/searchEditText"
+
+                            android:padding="@dimen/vertical_padding"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+
+                            android:focusedByDefault="false"
+
+                            android:imeOptions="actionDone"
+                            android:singleLine="true"
+                            android:background="@drawable/search_view_bg"
+                            android:hint="@string/search_view_hint"
+
+                            android:textColor="@color/searchViewTextColor"
+                            android:textColorHint="@color/searchViewTextColor" />
+
+                        <ImageView
+                            android:id="@+id/btnSort"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+
+                            android:layout_marginEnd="@dimen/_10dp"
+
+                            android:layout_gravity="center_vertical|end"
+
+                            android:src="@drawable/ic_sort"
+
+                            android:visibility="gone"
+                            tools:visibility="visible"/>
+
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/btnCancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/_10dp"
+
+                        android:background="@null"
+
+                        android:text="Cancel"
+                        android:textAllCaps="false"
+                        android:textSize="19sp"
+                        android:textColor="@drawable/button_text_selector"
+                        android:visibility="gone"
+                        tools:visibility="visible"/>
+
+                </LinearLayout>
 
                 <RadioGroup
                     android:id="@+id/radioGroupSearch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="@dimen/_10dp"
                     android:orientation="horizontal"
 
                     android:visibility="gone"
@@ -193,8 +240,8 @@
 
                     android:layout_marginTop="@dimen/small_padding"
 
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
+                    android:paddingStart="@dimen/_10dp"
+                    android:paddingEnd="@dimen/_10dp"
                     android:paddingBottom="@dimen/small_padding">
 
                     <RadioGroup
@@ -270,15 +317,13 @@
                     android:textSize="21sp"/>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/homeRecycleView"
+                    android:id="@+id/suggestionsRecycleView"
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="@dimen/_5dp"
 
-                    tools:listitem="@layout/item_single_album_somg"
+                    tools:listitem="@layout/item_suggestion_genre"
                     tools:itemCount="10"
 
                     android:visibility="visible"
@@ -292,9 +337,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:layout_marginStart="@dimen/_10dp"
+                android:layout_marginEnd="@dimen/_10dp"
+
+                android:paddingTop="@dimen/_10dp"
 
                 tools:listitem="@layout/item_album"
                 tools:itemCount="10"
@@ -369,7 +416,7 @@
                     android:layout_width="1600dp"
                     android:layout_height="160dp"
 
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="@dimen/_10dp"
 
                     android:src="@drawable/typing"/>
 

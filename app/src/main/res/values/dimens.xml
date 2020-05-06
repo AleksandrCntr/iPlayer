@@ -17,4 +17,11 @@
     <dimen name="view_pager_item_height">160dp</dimen>
     <dimen name="view_pager_item_margin_between">8dp</dimen>
     <dimen name="album_btn_margin_half">5dp</dimen>
+    <dimen name="_10dp">10dp</dimen>
+    <dimen name="_8dp">8dp</dimen>
+
+    <dimen name="corner_radius">10dp</dimen>
+    <dimen name="_4dp">4dp</dimen>
+    <dimen name="_20dp">20dp</dimen>
+    <dimen name="_5dp">5dp</dimen>
 </resources>

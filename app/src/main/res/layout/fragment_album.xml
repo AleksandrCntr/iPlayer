@@ -60,7 +60,7 @@ tools:context=".ui.album.AlbumFragment">
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
 
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/_10dp"
                 android:src="@drawable/ic_chevron_left_white_24dp"
                 android:background="@null"/>
 
@@ -73,7 +73,7 @@ tools:context=".ui.album.AlbumFragment">
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
 
-                app:cardCornerRadius="8dp"
+                app:cardCornerRadius="@dimen/corner_radius"
                 android:clipToPadding="true"
 
                 android:layout_marginTop="28dp">
@@ -96,9 +96,9 @@ tools:context=".ui.album.AlbumFragment">
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
 
-                android:padding="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="5dp"
+                android:padding="@dimen/_5dp"
+                android:layout_marginTop="@dimen/_10dp"
+                android:layout_marginEnd="@dimen/_5dp"
 
                 android:src="@drawable/ic_more_horiz_whtite_24dp"
                 android:background="@null"/>
@@ -240,7 +240,7 @@ tools:context=".ui.album.AlbumFragment">
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="@dimen/_10dp"
 
                     android:text="@string/album_shuffle_all"
                     android:textColor="@color/plainWhite"

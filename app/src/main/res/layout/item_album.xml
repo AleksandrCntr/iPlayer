@@ -8,7 +8,7 @@
 
     app:cardBackgroundColor="@color/item_album_bg"
 
-    app:cardCornerRadius="6dp"
+    app:cardCornerRadius="@dimen/corner_radius"
     app:cardElevation="0dp"
     app:cardMaxElevation="0dp"
 

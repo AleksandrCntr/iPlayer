@@ -2,30 +2,30 @@ package com.example.iplayer.ui.home
 
 import android.annotation.SuppressLint
 import android.app.ActivityOptions
+import android.app.Dialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.iplayer.AppConstants
-import com.example.iplayer.R
-import com.example.iplayer.bindDimen
+import com.example.iplayer.*
 import com.example.iplayer.data.Album
 import com.example.iplayer.data.Artist
 import com.example.iplayer.data.Song
 import com.example.iplayer.network.ITunesApi
-import com.example.iplayer.screenWidth
 import com.example.iplayer.ui.album.AlbumActivity
 import com.example.iplayer.ui.home.adapters.AlbumListAdapter
 import com.example.iplayer.ui.home.adapters.AlbumViewPagerAdapter
-import com.example.iplayer.ui.home.adapters.SimpleMockRecyclerAdapter
 import com.example.iplayer.ui.home.adapters.SongListAdapter
+import com.example.iplayer.ui.home.adapters.SuggestionListAdapter
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -38,6 +38,8 @@ class HomeFragment : Fragment() {
     companion object {
         fun newInstance() = HomeFragment()
     }
+
+    private val githubLink : String by bindString(R.string.github_link)
 
     private val homeViewModel : HomeViewModel by activityViewModels()
 
@@ -68,12 +70,25 @@ class HomeFragment : Fragment() {
         (appbar.layoutParams as CoordinatorLayout.LayoutParams).behavior = coordinatorBehaviour
 
         //  Initializing adapters
-        homeRecycleView.adapter = SimpleMockRecyclerAdapter(R.layout.item_single_album_somg)
-        homeRecycleView.layoutManager = LinearLayoutManager(activity)
         searchRecycleView.layoutManager = LinearLayoutManager(activity)
 
         //  SETUP view pager to display most recently viewed albums from ROOM
         viewHistoryViewPager.pageMargin = viewPagerPageMargin.toInt()
+
+        //  Setting button to show custom dialog
+        settingBtn.setOnClickListener {
+            if (!uic.searchingFlag) {
+                val aboutDialog = Dialog(requireContext())
+                aboutDialog.setContentView(R.layout.dialog_settings)
+
+                val githubBtn = aboutDialog.findViewById(R.id.btnGithub) as Button
+                githubBtn.setOnClickListener {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(githubLink))
+                    startActivity(intent)
+                }
+                aboutDialog.show()
+            }
+        }
 
         //    On switch of a radio group we need to ask observer of live data for latest value
         radioGroupRecent.setOnCheckedChangeListener { _, checkedId ->
@@ -96,6 +111,13 @@ class HomeFragment : Fragment() {
             }
         })
 
+        //  Display suggestions
+        suggestionsRecycleView.layoutManager = LinearLayoutManager(activity)
+        homeViewModel.getMusicSuggestions().let {
+            if (it.isNotEmpty())
+                suggestionsRecycleView.adapter = SuggestionListAdapter(it)
+        }
+
         //  RxJava Setup for Search Edit View with debouncing and other modifications
         setupSearchEditViewObservable()
 
@@ -110,10 +132,12 @@ class HomeFragment : Fragment() {
         }
 
         //  Search setup is displayed over Explore and Suggestions views
-        searchView.setOnFocusChangeListener {
+        searchEditText.setOnFocusChangeListener {
                 _, _ ->
             uic.initShowSearchingSetup()
         }
+        //    if view is revealed, cancel textview will call back pressed
+        btnCancel.setOnClickListener { activity?.onBackPressed() }
 
         //  On Radio button group checked we change the entities type that we search for
         radioGroupSearch.setOnCheckedChangeListener {
@@ -123,7 +147,7 @@ class HomeFragment : Fragment() {
                 R.id.radioBtnAlbum -> homeViewModel.setMusicSearchType(ITunesApi.Entity.ALBUM)
                 R.id.radioBtnArtist -> homeViewModel.setMusicSearchType(ITunesApi.Entity.ARTIST)
             }
-            searchView.text.toString().trim().let {
+            searchEditText.text.toString().trim().let {
                 if (it.isNotEmpty()) homeViewModel.searchITunes(it)
             }
         }
@@ -194,7 +218,7 @@ class HomeFragment : Fragment() {
     @SuppressLint("CheckResult")
     private fun setupSearchEditViewObservable() {
         searchObservable = Observable.create(ObservableOnSubscribe<String> { subscriber ->
-                searchView.doAfterTextChanged { subscriber.onNext(it.toString()) }
+                searchEditText.doAfterTextChanged { subscriber.onNext(it.toString()) }
             })
 
         searchObservable

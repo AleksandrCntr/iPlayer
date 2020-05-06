@@ -3,8 +3,7 @@ package com.example.iplayer.ui.home
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.iplayer.data.Album
-import com.example.iplayer.data.DomainITunesEntity
+import com.example.iplayer.data.*
 import com.example.iplayer.network.ITunesApi
 import com.example.iplayer.repositories.ITunesRepository
 import com.example.iplayer.repositories.RoomRepository
@@ -20,6 +19,7 @@ class HomeViewModel (
     val musicSearchResult = MutableLiveData<List<DomainITunesEntity>>()
     private val musicSearchType = MutableLiveData<ITunesApi.Entity>()
 
+    //  Even if query debounced, if previous job was not complete, we cancel it
     private var previousITunesSearchJob : Job? = null
 
     val recentlyViewedAlbums = roomRepository.takeLatestThirtyDistinctAlbums()
@@ -53,6 +53,26 @@ class HomeViewModel (
 
     fun insertJustViewedAlbum(album: Album) = viewModelScope.launch(context = Dispatchers.IO) {
         roomRepository.insertJustViewedAlbum(album)
+    }
+
+    fun getMusicSuggestions(): List<MusicSuggestion> {
+        val mockAlbums = MockAlbumListGenreRockSuggestion().albums
+        if (mockAlbums.isNotEmpty())
+            return listOf(
+                GenreSuggestion(
+                    "Hard Rock",
+                    mockAlbums
+                ),
+                SingleAlbumSuggestion(
+                    "Gorillaz",
+                    mockAlbums[3]
+                ),
+                SingleAlbumSuggestion(
+                    "AC DC",
+                    mockAlbums[4]
+                )
+            )
+        return emptyList()
     }
 
     fun getRecentlyViewedAlbumsValue() = recentlyViewedAlbums.value

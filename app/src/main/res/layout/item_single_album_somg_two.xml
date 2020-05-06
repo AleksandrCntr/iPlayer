@@ -8,11 +8,11 @@
 
     app:cardBackgroundColor="@color/item_single_album_song_two_bg"
 
-    app:cardCornerRadius="6dp"
+    app:cardCornerRadius="@dimen/corner_radius"
     app:cardElevation="0dp"
     app:cardMaxElevation="0dp"
 
-    android:layout_marginBottom="10dp">
+    android:layout_marginBottom="@dimen/_10dp">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -27,7 +27,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
 
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="@dimen/_10dp"
 
             android:layout_gravity="center_vertical"
             android:src="@drawable/daft_punk"/>

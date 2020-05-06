@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
 
         android:gravity="center"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="@dimen/_5dp"
         android:layout_marginEnd="15dp"
         android:lines="1"
 
@@ -41,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="@dimen/_10dp"
 
         tools:text="2:28"
         android:textSize="15sp"

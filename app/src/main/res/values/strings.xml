@@ -8,6 +8,8 @@
     <string name="radio_btn_album">Album</string>
     <string name="radio_btn_artist">Artist</string>
 
+    <string name="github_link">https://github.com/AleksandrCntr</string>
+
     <string name="number_of_tracks">tracks</string>
     <string name="home_recent">Recent</string>
     <string name="home_most_viewed">Most Viewed</string>
@@ -17,4 +19,13 @@
     <string name="album_btn_play">Play</string>
     <string name="album_btn_add">Add</string>
     <string name="album_shuffle_all">Shuffle All</string>
+    <string name="settings_greeting">Hello! :)\nThank you for checking this app out!\nYou can find other projects on my github page</string>
+    <string name="link_to_github">Link to Github</string>
+    <string name="github">GITHUB</string>
+    <string name="about_greeting">Hello there! 👋</string>
+    <string name="about_message">Thank you for checking out this app!\nYou can find my other work by following the github link below!</string>
+    <string name="similar_to">Similar to</string>
+    <string name="play_all">PLAY ALL</string>
+    <string name="fancy_some">Fancy some</string>
+    <string name="question_mark">\?</string>
 </resources>
